@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who am I</title>
+</head>
+
+<body>
+    <h1>API Real Practice</h1>
+    <h1>Random User Info:</h1>
+    <h2>Name : <span id="name"></span></h2>
+    <h2>Gender : <span id="gender"></span></h2>
+    <h2>Email : <span id="email"></span></h2>
+
+    <script>
+        fetch('https://randomuser.me/api/?results=10')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                const users = data.results;
+                for (let i = 0; i < users.length; i++) {
+                    const name = users[i].name;
+                    const userName = `${name.title} ${name.first} ${name.last}`;
+                    const gender = users[i].gender;
+                    const email = users[i].email;
+                    //console.log(userName);
+                    document.getElementById('name').innerText = userName;
+                    document.getElementById('gender').innerText = gender;
+                    document.getElementById('email').innerText = email;
+                }
+
+            });
+    </script>
+</body>
+
+</html>
